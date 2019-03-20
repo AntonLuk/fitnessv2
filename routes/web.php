@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/addFormWithClient/{id}', 'ClientController@addFormWithClient')->name('clients.addFormWithClient');
         Route::post('/create', 'ClientController@create')->name('clients.create');
         Route::get('/visits/{id}','ClientController@visits')->name('clients.visits');
-        Route::post('/print','ClientController@print')->name('clients.print');
+        Route::get('/print/{id}','ClientController@print')->name('clients.print');
 
         Route::post('/addVisit', 'ClientController@addVisit')->name('clients.addVisit');
     });

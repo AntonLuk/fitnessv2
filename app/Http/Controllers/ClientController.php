@@ -17,11 +17,14 @@ use Illuminate\Support\Str;
 
 class ClientController extends Controller
 {
-    public function print(Request $request){
-        $contract=Contract::where('client_id',$request->client_id)->with('client')->first();
+    public function print($id){
+        $contract=Contract::where('client_id',$id)->with('client')->first();
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $tpl = $phpWord->loadTemplate(public_path('Appdividend.docx'));
         $tpl->setValue('fio',$contract->client->FIO);
+        $tpl->setValue('passport',$contract->client->passport_series.' '.$contract->client->passport_number.' Выдан'.$contract->client->passport_date.' '.$contract->client->passport_who);
+        $tpl->setValue('d_num',$contract->number);
+        $tpl->setValue('d_date',$contract->date);
 //        $section = $phpWord->addSection();
 //        $text = $section->addText('111');
 //        $text = $section->addText("222");
@@ -31,8 +34,8 @@ class ClientController extends Controller
 //        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 //        $objWriter->save(public_path('tpl.docx'));
 
-        $tpl->saveAs(public_path('tpl111__'.$request->client_id.'.docx'));
-        return response()->download(public_path('tpl111__'.$request->client_id.'.docx'));
+        $tpl->saveAs(public_path('tpl111__'.$id.'.docx'));
+        return response()->download(public_path('tpl111__'.$id.'.docx'));
         //return(dd($contract));
     }
 //$phpWord = new \PhpOffice\PhpWord\PhpWord();

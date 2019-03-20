@@ -17,6 +17,9 @@
                     <td>{{$contract->number}}</td>
                     <td>{{$contract->date}}</td>
                     <td>{{$contract->client->FIO}}({{$contract->client->number}})</td>
+                    <td><input type="button"  class="" style="width:100px;height:35px; "
+                               value="Договор"
+                               onclick='location.href = "{{route('clients.print',['id'=>$contract->client->id])}}";'></td>
                 </tr>
             @endforeach
             </tbody>
