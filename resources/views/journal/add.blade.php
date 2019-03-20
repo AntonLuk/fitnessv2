@@ -30,7 +30,10 @@
             </div>
             <div class="form-group">
                 <label>Дата выдачи</label>
-                <input type="date" class="form-control" name="date">
+                <input type="date" readonly id="MyDate" class="form-control" name="date">
+                <script>
+                    document.getElementById('myDate').valueAsDate = new Date();
+                </script>
             </div>
 
             <input type="submit" class="btn btn-success" value="Добавить">

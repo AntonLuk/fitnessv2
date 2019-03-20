@@ -12,9 +12,10 @@
                     @endforeach
                 </select>
             </div>
+            <input type="hidden" name="client_id" value="{{$client->id}}">
             <div class="form-group">
                 <label>Клиент</label>
-                <input type="text" class="form-control" readonly name="client_id" value="{{$client->FIO}}">
+                <input type="text" class="form-control" readonly name="client_FIO" value="{{$client->FIO}}">
             </div>
             <div class="form-group">
                 <label>Количество(Кол-во занятий) или (Кол-во месяцов)</label>

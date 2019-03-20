@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/addFormWithClient/{id}', 'ClientController@addFormWithClient')->name('clients.addFormWithClient');
         Route::post('/create', 'ClientController@create')->name('clients.create');
         Route::get('/visits/{id}','ClientController@visits')->name('clients.visits');
+        Route::post('/print','ClientController@print')->name('clients.print');
+
         Route::post('/addVisit', 'ClientController@addVisit')->name('clients.addVisit');
     });
     Route::group(['prefix' => 'users'], function () {
@@ -60,6 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
     Route::group(['prefix' => 'contracts'], function () {
         Route::get('/data', 'ContractController@anyData')->name('contracts.data');
+        Route::get('/show/{id}','ContractController@show')->name('contracts.show');
     });
 });
 Auth::routes();

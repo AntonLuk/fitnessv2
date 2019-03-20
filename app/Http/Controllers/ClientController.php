@@ -10,9 +10,40 @@ use App\Client;
 use App\Visit;
 use Carbon\Carbon;
 use App\JournalTicket;
+use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpWord\PhpWord;
+use Illuminate\Support\Str;
+
 
 class ClientController extends Controller
 {
+    public function print(Request $request){
+        $contract=Contract::where('client_id',$request->client_id)->with('client')->first();
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $tpl = $phpWord->loadTemplate(public_path('Appdividend.docx'));
+        $tpl->setValue('fio',$contract->client->FIO);
+//        $section = $phpWord->addSection();
+//        $text = $section->addText('111');
+//        $text = $section->addText("222");
+//        $text = $section->addText('333',array('name'=>'Arial','size' => 20,'bold' => true));
+        //$section->addImage("./images/Krunal.jpg");
+       // $tpl->save(public_path('tpl.docx'));
+//        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+//        $objWriter->save(public_path('tpl.docx'));
+
+        $tpl->saveAs(public_path('tpl111__'.$request->client_id.'.docx'));
+        return response()->download(public_path('tpl111__'.$request->client_id.'.docx'));
+        //return(dd($contract));
+    }
+//$phpWord = new \PhpOffice\PhpWord\PhpWord();
+//$section = $phpWord->addSection();
+//$text = $section->addText($request->get('name'));
+//$text = $section->addText($request->get('email'));
+//$text = $section->addText($request->get('number'),array('name'=>'Arial','size' => 20,'bold' => true));
+//$section->addImage("./images/Krunal.jpg");
+//$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+//$objWriter->save('Appdividend.docx');
+//return response()->download(public_path('Appdividend.docx'));
     public function anyData(){
         $clients=Client::all();
         return view('clients.index',compact('clients'));
@@ -37,6 +68,11 @@ class ClientController extends Controller
         $client->passport_who=$request->passport_who;
         $client->passport_address=$request->passport_address;
         $client->save();
+        $contract=new Contract();
+        $contract->number=round(microtime(true) * 1000);;
+        $contract->client_id=$client->id;
+        $contract->date= Carbon::today();
+        $contract->save();
         return(redirect(route('clients.addFormWithClient',['id'=>$client->id])));
     }
     public function visits($id){

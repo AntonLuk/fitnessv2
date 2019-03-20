@@ -24,9 +24,10 @@ class JournalTicketController extends Controller
         $ticket->date_delivery=$date;
         $ticket->cost=$request->cost;
         $client=Client::where('id',$request->client_id)->with('contract')->first();
+        //return(dd($client));
         $ticket->contract_id=$client->contract->id;
         $ticket->save();
-        return(redirect(route('journaltics.data')));
+        return(redirect(route('contracts.show',['id'=>$client->contract->id])));
       //  return (dd(111));
     }
     public function anyData(){
