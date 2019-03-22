@@ -23,7 +23,8 @@ class CreateClientsTable extends Migration
             $table->string('passport_who');
             $table->date('passport_date');
             $table->string('passport_address');
-
+            $table->bigInteger('gender_id')->unsigned();
+            $table->foreign('gender_id')->references('id')->on('genders');
             $table->timestamps();
         });
     }

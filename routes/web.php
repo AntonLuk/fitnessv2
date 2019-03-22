@@ -50,6 +50,9 @@ Route::group(['middleware' => ['auth']], function () {
 //        Route::post('/create', 'TicketController@create')->name('tickets.create');
 //
 //    });
+    Route::group(['prefix' => 'leeds'], function () {
+        Route::get('/new','LeedsController@show')->name('leeds.show');
+    });
     Route::group(['prefix' => 'journaltics'], function () {
         Route::get('/data', 'JournalTicketController@anyData')->name('journaltics.data');
         Route::get('/show/{id}', 'JournalTicketController@show')->name('journaltics.show');

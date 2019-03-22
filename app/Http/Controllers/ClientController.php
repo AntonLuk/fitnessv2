@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contract;
+use App\Gender;
 use App\Ticket;
 use App\TypeTicket;
 use Illuminate\Http\Request;
@@ -52,7 +53,8 @@ class ClientController extends Controller
         return view('clients.index',compact('clients'));
     }
     public function addForm(){
-        return view('clients.add');
+        $genders=Gender::all();
+        return view('clients.add',compact('genders'));
     }
     public function addFormWithClient($id){
         $client=Client::find($id);
@@ -70,6 +72,7 @@ class ClientController extends Controller
         $client->passport_date=$request->passport_date;
         $client->passport_who=$request->passport_who;
         $client->passport_address=$request->passport_address;
+        $client->gender_id=$request->gender_id;
         $client->save();
         $contract=new Contract();
         $contract->number=round(microtime(true) * 1000);;
@@ -87,8 +90,9 @@ class ClientController extends Controller
       // return(dd($tickets));
     }
     public function show($id){
-        $client=Client::find($id)->first();
-        return view('clients.show',compact('client'));
+        $genders=Gender::all();
+        $client=Client::find($id)->with('gender')->first();
+        return view('clients.show',compact('client','genders'));
     }
     public function addVisit(Request $request){
        // $journalTick=JournalTicket::with('ticket')->where('client_id',$request->client_id)->first();

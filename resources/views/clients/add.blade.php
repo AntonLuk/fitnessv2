@@ -4,18 +4,39 @@
     <form method="post" action="{{route('clients.create')}}">
         @csrf
         <div class="form-group">
-            <div class="form-group">
-                <label for="fio">ФИО</label>
-                <input type="text" name="fio" class="form-control">
+            <div class="container">
+                <div class="form-group">
+                    <label for="fio">ФИО</label>
+                    <input type="text" name="fio" class="form-control">
+                </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="number">Номер телефона</label>
+                        <input type="number" name="number" class="form-control">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Пол</label>
+                        <select class="form-control" name="gender_id">
+                            @foreach($genders as $gender)
+                                <option value="{{$gender->id}}">{{$gender->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="number">Дата рождения</label>
+                        <input type="date" name="date_of_birth" class="form-control">
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="number">Номер телефона</label>
-                <input type="number" name="number" class="form-control">
             </div>
-            <div class="form-group">
-                <label for="number">Дата рождения</label>
-                <input type="date" name="date_of_birth" class="form-control">
-            </div>
+
+
             <label>Данные паспорта</label>
             <div class="form-group border border-primary rounded">
                 <div class="row">
@@ -41,7 +62,7 @@
                 </div>
 
             </div>
-            <button type="submit" class="btn btn-success">Создать пользователя</button>
+            <button type="submit" class="btn btn-success">Добавить клиента</button>
         </div>
     </form>
     @endsection

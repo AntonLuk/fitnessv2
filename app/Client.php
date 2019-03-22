@@ -18,4 +18,7 @@ class Client extends Model
     public function contract(){
         return $this->hasOne(Contract::class,'client_id');
     }
+    public function gender(){
+        return $this->belongsTo(Gender::class);
+    }
 }
