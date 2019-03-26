@@ -21,13 +21,18 @@
                             <label for="comments">Дата начала</label>
                             <input type="datetime-local" id="myDate" class="form-control" name="date_start">
                         </div>
-                        <script>
-                            document.getElementById('myDate').valueAsDate = new Date();
-                        </script>
+
+
                         <div class="form-group">
                             <label>Дата окончания</label>
-                            <input type="datetime-local" class="form-control" name="date_end">
+                            <input type="datetime-local" id="myDate1" class="form-control" name="date_end">
                         </div>
+                        <script>
+                            var d = new Date();
+
+                            document.getElementById("myDate").value = d.toISOString().slice(0,16);
+                            document.getElementById("myDate1").value = d.toISOString().slice(0,16);
+                        </script>
                         <button type="submit" class="form-control btn btn-success">Добавить</button>
                     </form>
                 </div>
