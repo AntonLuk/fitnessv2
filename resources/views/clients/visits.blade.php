@@ -19,8 +19,11 @@
                         <input type="hidden" name="client_id" value="{{$contract->client->id}}">
                         <div class="form-group">
                             <label for="comments">Дата начала</label>
-                            <input type="datetime-local" class="form-control" name="date_start">
+                            <input type="datetime-local" id="myDate" class="form-control" name="date_start">
                         </div>
+                        <script>
+                            document.getElementById('myDate').valueAsDate = new Date();
+                        </script>
                         <div class="form-group">
                             <label>Дата окончания</label>
                             <input type="datetime-local" class="form-control" name="date_end">

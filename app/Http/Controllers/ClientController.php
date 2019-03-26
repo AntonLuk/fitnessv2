@@ -24,6 +24,8 @@ class ClientController extends Controller
         $tpl = $phpWord->loadTemplate(public_path('Appdividend.docx'));
         $tpl->setValue('fio',$contract->client->FIO);
         $tpl->setValue('passport',$contract->client->passport_series.' '.$contract->client->passport_number.' Выдан'.$contract->client->passport_date.' '.$contract->client->passport_who);
+        $tpl->setValue('passport_addres',$contract->client->passport_address);
+        $tpl->setValue('number',$contract->client->number);
         $tpl->setValue('d_num',$contract->number);
         $tpl->setValue('d_date',$contract->date);
 //        $section = $phpWord->addSection();
