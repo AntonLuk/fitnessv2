@@ -67,6 +67,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/data', 'ContractController@anyData')->name('contracts.data');
         Route::get('/show/{id}','ContractController@show')->name('contracts.show');
     });
+    Route::group(['prefix' => 'otchets'], function () {
+        Route::post('/ticketDate','OtchetsController@ticketDate')->name('otchets.ticketDate');
+        Route::get('/','OtchetsController@ticketsDateForm')->name('othets.ticketsDateForm');
+    });
 });
 Auth::routes();
 
