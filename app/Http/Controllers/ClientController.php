@@ -111,6 +111,7 @@ class ClientController extends Controller
                 $visit->ticket_id=$ticket->id;
                 $visit->created_at=$created_at;
                 $visit->updated_at=$updated_at;
+                $visit->gender_id=$ticket->contract->client->gender_id;
                 $visit->save();
             }
 
@@ -121,6 +122,7 @@ class ClientController extends Controller
             $visit->ticket_id=$ticket->id;
             $visit->created_at=$created_at;
             $visit->updated_at=$updated_at;
+            $visit->gender_id=$ticket->contract->client->gender_id;
             $visit->save();
         }
 

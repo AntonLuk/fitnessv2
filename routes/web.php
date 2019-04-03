@@ -70,6 +70,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'otchets'], function () {
         Route::post('/ticketDate','OtchetsController@ticketDate')->name('otchets.ticketDate');
         Route::get('/','OtchetsController@ticketsDateForm')->name('othets.ticketsDateForm');
+        Route::get('/visitsDateForm','OtchetsController@visitsDateForm')->name('othets.visitsDateForm');
+        Route::post('/visitsDate','OtchetsController@clientsVisits')->name('otchets.visitsDate');
+        Route::get('/usersDateForm','OtchetsController@usersDateForm')->name('othets.usersDateForm');
+        Route::post('/usersDate','OtchetsController@usersDate')->name('othets.usersDate');
     });
 });
 Auth::routes();

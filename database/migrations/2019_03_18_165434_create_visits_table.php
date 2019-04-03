@@ -17,6 +17,8 @@ class CreateVisitsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('ticket_id')->unsigned();
             $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
+            $table->bigInteger('gender_id')->unsigned();
+            $table->foreign('gender_id')->references('id')->on('genders');
             $table->timestamps();
         });
     }

@@ -27,6 +27,8 @@ class CreateTicketsTable extends Migration
             $table->foreign('type_ticket_id')->references('id')->on('type_tickets');
             $table->bigInteger('contract_id')->unsigned();
             $table->foreign('contract_id')->references('id')->on('contracts')->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -9,6 +9,7 @@ use App\Ticket;
 use App\JournalTicket;
 use Carbon\Carbon;
 use App\TypeTicket;
+use Illuminate\Support\Facades\Auth;
 class JournalTicketController extends Controller
 {
     public function addForm(){
@@ -23,6 +24,7 @@ class JournalTicketController extends Controller
         $date=Carbon::createFromFormat('Y-m-d', $request->date);
         $ticket->date_delivery=$date;
         $ticket->cost=$request->cost;
+        $ticket->user_id=Auth::user()->id;
         $client=Client::where('id',$request->client_id)->with('contract')->first();
         //return(dd($client));
         $ticket->contract_id=$client->contract->id;

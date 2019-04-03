@@ -66,6 +66,8 @@
                 <div class="collapse col-md-12" id="otchets">
 
                     <a href="{{route('othets.ticketsDateForm')}}" class="list-group-item childlist">Абонементы по периоду</a>
+                    <a href="{{route('othets.visitsDateForm')}}" class="list-group-item childlist">Отчет по посещаимости</a>
+                    <a href="{{route('othets.usersDateForm')}}" class="list-group-item childlist">Отчет по сотрудникам</a>
                     {{--@if(Entrust::can('user-create'))--}}
                     {{--<a href="{{route('journaltics.addForm')}}"--}}
                     {{--class="list-group-item childlist">Новый абонемент</a>--}}
