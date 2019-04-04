@@ -25,7 +25,7 @@ class OtchetsController extends Controller
         //$tickets=Ticket::whereBetween('date_delivery',[$request->start,$request->end])->groupBy('type_ticket_id')->orderBy('contract_id')->get();
         $ticketsTimeCount=Ticket::where('type_ticket_id',1)->whereBetween('date_delivery',[$request->start,$request->end])->count();
         $ticketsCount=Ticket::where('type_ticket_id',2)->whereBetween('date_delivery',[$request->start,$request->end])->count();
-        $ticketsProbCount=Ticket::where('type_ticket_id',1)->whereBetween('date_delivery',[$request->start,$request->end])->count();
+        $ticketsProbCount=Ticket::where('type_ticket_id',3)->whereBetween('date_delivery',[$request->start,$request->end])->count();
         $user=Auth::user()->name;
         $date=Carbon::now();
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
